@@ -1,6 +1,11 @@
 import { Avatar, AvatarFallback } from "./ui/avatar";
 
-const Navbar = () => {
+interface NavbarProps {
+  onNavigate: (page: string) => void;
+  currentPage: string;
+}
+
+const Navbar = ({ onNavigate, currentPage }: NavbarProps) => {
   return (
     <nav className="sticky top-0 flex w-full bg-black justify-between p-4 items-center z-50">
       <div className="flex items-center gap-3">
@@ -13,15 +18,22 @@ const Navbar = () => {
       </div>
 
       <div className="hidden md:flex gap-6 text-lg">
-        <a className="text-white/90 hover:text-white transition-colors cursor-pointer">
+        <button
+          className={`text-white/50 hover:text-white transition-colors cursor-pointer ${
+            currentPage === "home" ? "bg-white/10" : ""
+          }`}
+          onClick={() => onNavigate("home")}
+        >
           Home
-        </a>
-        <a className="text-white/90 hover:text-white transition-colors cursor-pointer">
-          About
-        </a>
-        <a className="text-white/90 hover:text-white transition-colors cursor-pointer">
-          Contact
-        </a>
+        </button>
+        <button
+          className={`text-white/50 hover:text-white transition-colors cursor-pointer ${
+            currentPage === "add-event" ? "bg-white/10" : ""
+          }`}
+          onClick={() => onNavigate("add-event")}
+        >
+          Add Event
+        </button>
       </div>
 
       <Avatar className="w-10 h-10">
