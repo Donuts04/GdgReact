@@ -1,7 +1,8 @@
 import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Button } from "./ui/button";
 
 interface NavbarProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: "home" | "add-event") => void;
   currentPage: string;
 }
 
@@ -17,23 +18,25 @@ const Navbar = ({ onNavigate, currentPage }: NavbarProps) => {
         <h1 className="text-white text-xl font-semibold">Htu Events</h1>
       </div>
 
-      <div className="hidden md:flex gap-6 text-lg">
-        <button
-          className={`text-white/50 hover:text-white transition-colors cursor-pointer ${
-            currentPage === "home" ? "bg-white/10" : ""
+      <div className="hidden md:flex gap-4">
+        <Button
+          variant="ghost"
+          className={`h-9 px-4 text-white hover:text-white hover:bg-white/10 ${
+            currentPage === "home" ? "bg-white/10" : "bg-transparent"
           }`}
           onClick={() => onNavigate("home")}
         >
           Home
-        </button>
-        <button
-          className={`text-white/50 hover:text-white transition-colors cursor-pointer ${
-            currentPage === "add-event" ? "bg-white/10" : ""
+        </Button>
+        <Button
+          variant="ghost"
+          className={`h-9 px-4 text-white hover:text-white hover:bg-white/10 ${
+            currentPage === "add-event" ? "bg-white/10" : "bg-transparent"
           }`}
           onClick={() => onNavigate("add-event")}
         >
           Add Event
-        </button>
+        </Button>
       </div>
 
       <Avatar className="w-10 h-10">
